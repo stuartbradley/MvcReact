@@ -14,8 +14,8 @@ namespace NetC.Domain
         public string Title { get; }
         public string Image { get; }
         public string HtmlContext { get; }
-        private List<Comment> _comments;
-        public IReadOnlyList<Comment> Comments => _comments.AsReadOnly();
+        private List<Comment> _comments = new List<Comment>();
+        public IReadOnlyList<Comment> Comments => _comments?.AsReadOnly();
 
         [JsonConstructor]
         public BlogPost(int id, DateTime date, string title, string image, string htmlContent, List<Comment> comments)

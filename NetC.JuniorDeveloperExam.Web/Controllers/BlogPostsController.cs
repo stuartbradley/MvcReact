@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using NetC.Application.Queries;
-using NetC.JuniorDeveloperExam.Web.Models.BlogPost;
+using NetC.JuniorDeveloperExam.Web.Models.BlogPosts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                 HtmlContext = blogPost.HtmlContext,
                 Image = blogPost.Image,
                 Title = blogPost.Title,
-                Comments = blogPost.Comments.Select(x => new CommentModel()
+                Comments = blogPost.Comments?.Select(x => new CommentModel()
                 {
                     Name = x.Name,
                     CreationDate = x.CreationDate,
