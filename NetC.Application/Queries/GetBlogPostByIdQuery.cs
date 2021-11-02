@@ -37,7 +37,7 @@ namespace NetC.Application.Queries
                 HtmlContext = blogPost.HtmlContext,
                 Image = blogPost.Image,
                 Title = blogPost.Title,
-                Comments = blogPost.Comments?.Select(x => new CommentDto()
+                Comments = blogPost.Comments.Select(x => new CommentDto()
                 {
                     CreationDate = x.CreationDate,
                     EmailAddress = x.EmailAddress,

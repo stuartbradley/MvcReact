@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetC.JuniorDeveloperExam.Web.Models.BlogPosts
+namespace NetC.JuniorDeveloperExam.Web.Models.BlogPost
 {
     public class BlogPostModel
     {
