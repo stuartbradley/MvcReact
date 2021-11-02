@@ -16,13 +16,13 @@ namespace NetC.Domain
         public string Message { get; }
 
         [JsonConstructor]
-        public Comment(int id, string name, string emailAddress, string message, DateTime creationDate)
+        public Comment(int id, string name, string emailAddress, string message, DateTime date)
         {
             Id = id;
             Name = name;
             EmailAddress = emailAddress;
             Message = message;
-            CreationDate = creationDate;
+            CreationDate = date;
         }
     }
 }
