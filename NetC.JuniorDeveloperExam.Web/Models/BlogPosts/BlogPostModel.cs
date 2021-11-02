@@ -19,6 +19,7 @@ namespace NetC.JuniorDeveloperExam.Web.Models.BlogPosts
     public class CommentModel
     {
         public string Name { get; set; }
+        public string AvatarLink => "https://eu.ui-avatars.com/api/?name="+Name.Split()[0]+"+"+Name.Split()[1];
         public DateTime CreationDate { get; set; }
         public string EmailAddress { get; set; }
         public string Message { get; set; }
