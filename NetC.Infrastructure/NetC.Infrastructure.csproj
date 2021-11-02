@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Blog-Posts.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Blog-Posts.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetC.Application\NetC.Application.csproj" />
+    <ProjectReference Include="..\NetC.Domain\NetC.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
