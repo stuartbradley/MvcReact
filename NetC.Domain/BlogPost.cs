@@ -26,15 +26,22 @@ namespace NetC.Domain
             Image = image;
             HtmlContext = htmlContent;
             _comments = comments;
+            if (_comments == null)
+                _comments = new List<Comment>();
         }
 
-        public int AddComment(int id, string name, string emailAddress, string comment, DateTime creationDate)
+        public int AddComment(string name, string emailAddress, string comment, DateTime creationDate)
         {
-            if (id == 0)
-                id = _comments.Max(x => x.Id) + 1;
-            _comments.Add(new Comment(id, name, emailAddress, comment, creationDate));
+
+            var id = _comments.Max(x => x.Id) + 1;
+            _comments.Add(new Comment(id, name, emailAddress, comment, creationDate, new List<Reply>()));
 
             return id;
+        }
+
+        public void AddReplyToComment(int commentId, string name, string emailAddress, string message, DateTime createdDate)
+        {
+            _comments.Single(x => x.Id == commentId).AddReply(name, emailAddress, message, createdDate);
         }
     }
 }

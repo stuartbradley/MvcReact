@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top 5 Considerations for a Content-First Design Approach - NetConstruct Blog</title>
     <link rel="stylesheet" type="text/css" href="/Assets/Styles/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/Assets/Styles/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/Assets/Styles/custom.css"
+    @*<script src="@Url.Content("~/O.jsx")"></script>*@
+
+
 </head>
 <body>
     <!-- Navigation -->
@@ -32,68 +35,57 @@
 
     <div class="container">
         <div class="row">
-
-            <!-- Blog post content -->
             <div class="col-lg-12">
-
-                <!-- Title -->
                 <h1 class="mt-4">@Model.Title</h1>
-
-                <hr>
-
-                <!-- Date/Time -->
+                <hr />
                 <p>Posted on @Model.Date.ToString("MMMM") @Model.Date.Day, @Model.Date.Year</p>
-
-                <hr>
-
-                <!-- Preview Image -->
-                <img class="img-fluid rounded" src="@Model.Image" alt="Top 5 Considerations for a Content-First Design Approach">
-
-                <hr>
-
-                <!-- Post Content -->
-                @Html.Raw(@Model.HtmlContext)
-
-                <hr>
-
-                <!-- Blog post comment form -->
-                <div class="card my-4">
-                    <h5 class="card-header">Leave a Comment:</h5>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="Name"></label>
-                                    <input type="email" class="form-control" id="Name" placeholder="Name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="EmailAddress">Email Address</label>
-                                    <input type="password" class="form-control" id="EmailAddress" placeholder="Email Address">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Message">Message</label>
-                                <textarea id="Message" class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                <hr />
+                <img class="img-fluid rounded" src="@Model.Image" alt="Top 5 Considerations for a Content-First Design Approach" />
+                <hr />
+                @Html.Raw(Model.HtmlContext)
+            </div>
+        </div>
+    </div>
+    <!-- Blog post comment form -->
+    @{
+        Html.RenderPartial("CommentInput", new NetC.JuniorDeveloperExam.Web.Models.BlogPosts.CommentPostModel() { BlogPostId = Model.Id });
+    }
+    <!-- Blog post comments -->
+    @if (Model.Comments != null)
+    {
+        foreach (var comment in Model.Comments)
+        {
+            <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle user-avatar" src="@comment.AvatarLink" alt="@comment.Name">
+                <div class="media-body">
+                    <h5 class="mt-0">@comment.Name <small><em>(@comment.CreationDate.ToString("MMMM") @comment.CreationDate.Day, @comment.CreationDate.Year - @comment.CreationDate.ToString("HH:mm"))</em></small></h5>
+                    @comment.Message
                 </div>
-
-                <!-- Blog post comments -->
-                @foreach (var comment in Model.Comments)
+            </div>
+            <button type="button" onclick="replyClicked(@comment.Id)" class="btn btn-primary">Reply</button>
+            if (comment.Replies != null)
+            {
+                foreach (var reply in comment.Replies)
                 {
                     <div class="media mb-4">
-                        <img class="d-flex mr-3 rounded-circle user-avatar" src="@comment.AvatarLink" alt="@comment.Name">
+                        <img class="d-flex mr-3 rounded-circle user-avatar" src="@reply.AvatarLink" alt="@reply.Name">
                         <div class="media-body">
-                            <h5 class="mt-0">@comment.Name <small><em>(@comment.CreationDate.ToString("MMMM") @comment.CreationDate.Day, @comment.CreationDate.Year - @comment.CreationDate.ToString("HH:mm"))</em></small></h5>
-                            @comment.Message
+                            <h5 class="mt-0">@reply.Name - Replied to @comment.Name<small><em>(@reply.CreationDate.ToString("MMMM") @reply.CreationDate.Day, @reply.CreationDate.Year - @reply.CreationDate.ToString("HH:mm"))</em></small></h5>
+                            @reply.Message
                         </div>
-                    </div>  
+                    </div>
                 }
-            </div>
-    </div>
+            }
+        }
+    }
+    <div id="replyPartial"></div>
+    <script>
+        function replyClicked(id) {
+
+                $("#replyPartial").load("/BlogPosts/ShowReply/"+@Model.Id+"/"+id)
+            };
+    </script>
+
 
     <script src="/Assets/Scripts/jquery-3.3.1.min.js"></script>
     <script src="/Assets/Scripts/jquery.validate.min.js"></script>

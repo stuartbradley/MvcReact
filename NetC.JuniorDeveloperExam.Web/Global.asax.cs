@@ -13,6 +13,7 @@ namespace NetC.JuniorDeveloperExam.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             DIContainerConfig.Setup();
+            ReactConfig.Configure();
         }
     }
 }

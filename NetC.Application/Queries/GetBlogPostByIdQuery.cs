@@ -39,10 +39,18 @@ namespace NetC.Application.Queries
                 Title = blogPost.Title,
                 Comments = blogPost.Comments?.Select(x => new CommentDto()
                 {
-                    CreationDate = x.CreationDate,
+                    Id = x.Id,
+                    CreationDate = x.Date,
                     EmailAddress = x.EmailAddress,
                     Message = x.Message,
-                    Name = x.Name
+                    Name = x.Name,
+                    Replies = x.Replies?.Select(y => new ReplyDto()
+                    {
+                        Name = y.Name,
+                        CreationDate = y.CreationDate,
+                        EmailAddress = y.EmailAddress,
+                        Message = y.Message
+                    }).ToList()
                 }).ToList()
             });
         }
@@ -62,8 +70,19 @@ namespace NetC.Application.Queries
 
     public class CommentDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public string EmailAddress { get; set; }
         public string Message { get; set; }
+        public List<ReplyDto> Replies { get; set; }
     }
+
+public class ReplyDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public DateTime CreationDate { get; set; }
+    public string EmailAddress { get; set; }
+    public string Message { get; set; }
+}
