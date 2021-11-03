@@ -1,0 +1,27 @@
+﻿@model NetC.JuniorDeveloperExam.Web.Models.BlogPosts.CommentPostModel
+
+<div class="card my-4">
+    <h5 class="card-header">Leave a Comment:</h5>
+    <div class="card-body">
+        @using (Html.BeginForm("AddComment", "BlogPosts", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.BlogPostId);
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control" name="Name" id="Name" placeholder="Name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="EmailAddress">Email Address</label>
+                    <input type="email" class="form-control" name="EmailAddress" id="EmailAddress" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Message">Message</label>
+                <textarea id="Message" name="Message" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        }
+    </div>
+</div>

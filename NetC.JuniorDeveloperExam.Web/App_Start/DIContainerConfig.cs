@@ -22,7 +22,9 @@ namespace NetC.JuniorDeveloperExam.Web.App_Start
             builder.RegisterControllers(typeof(BlogPostsController).Assembly);
 
             builder.RegisterMediatR(typeof(GetBlogPostByIdQuery).Assembly);
-            builder.RegisterType<ReadBlogPostService>().As<IReadBlogPostService>();
+            builder.RegisterType<BlogPostService>().As<IReadBlogPostService>();
+            builder.RegisterType<BlogPostService>().As<IWriteBlogPostService>();
+
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
