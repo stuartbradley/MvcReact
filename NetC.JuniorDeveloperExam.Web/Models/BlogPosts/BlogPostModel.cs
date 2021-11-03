@@ -26,6 +26,7 @@ namespace NetC.JuniorDeveloperExam.Web.Models.BlogPosts
         private string LastName => Name.Split().Length > 1 ? Name.Split()[1] : ""; 
         public string EmailAddress { get; set; }
         public string Message { get; set; }
+        public string FileName { get; set; }
         public List<ReplyModel> Replies { get; set; } = new List<ReplyModel>();
     }
 

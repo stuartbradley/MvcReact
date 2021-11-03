@@ -13,7 +13,7 @@ namespace NetC.Domain
         public DateTime Date { get; }
         public string Title { get; }
         public string Image { get; }
-        public string HtmlContext { get; }
+        public string HtmlContent { get; }
         private List<Comment> _comments = new List<Comment>();
         public IReadOnlyList<Comment> Comments => _comments?.AsReadOnly();
 
@@ -24,17 +24,20 @@ namespace NetC.Domain
             Date = date;
             Title = title;
             Image = image;
-            HtmlContext = htmlContent;
+            HtmlContent = htmlContent;
             _comments = comments;
             if (_comments == null)
                 _comments = new List<Comment>();
         }
 
-        public int AddComment(string name, string emailAddress, string comment, DateTime creationDate)
+        public int AddComment(string name, string emailAddress, string comment, DateTime creationDate, string fileName)
         {
-
-            var id = _comments.Max(x => x.Id) + 1;
-            _comments.Add(new Comment(id, name, emailAddress, comment, creationDate, new List<Reply>()));
+            int id = 0;
+            if (_comments.Count < 1)
+                id = 1;
+            else
+                id = _comments.Max(x => x.Id) + 1;
+            _comments.Add(new Comment(id, name, emailAddress, comment, creationDate, fileName,new List<Reply>()));
 
             return id;
         }

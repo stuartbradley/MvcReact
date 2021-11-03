@@ -58,7 +58,7 @@
             <div class="media mb-4">
                 <img class="d-flex mr-3 rounded-circle user-avatar" src="@comment.AvatarLink" alt="@comment.Name">
                 <div class="media-body">
-                    <h5 class="mt-0">@comment.Name <small><em>(@comment.CreationDate.ToString("MMMM") @comment.CreationDate.Day, @comment.CreationDate.Year - @comment.CreationDate.ToString("HH:mm"))</em></small></h5>
+                    <h5 class="mt-0">@comment.Name - @comment.FileName<small><em>(@comment.CreationDate.ToString("MMMM") @comment.CreationDate.Day, @comment.CreationDate.Year - @comment.CreationDate.ToString("HH:mm"))</em></small></h5>
                     @comment.Message
                 </div>
             </div>

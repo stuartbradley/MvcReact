@@ -14,18 +14,21 @@ namespace NetC.Domain
         public DateTime Date { get; }
         public string EmailAddress { get; }
         public string Message { get; }
+        public string FileName { get; }
 
         private List<Reply> _replies { get; } = new List<Reply>();
         public IReadOnlyList<Reply> Replies => _replies?.AsReadOnly();
 
         [JsonConstructor]
-        public Comment(int id, string name, string emailAddress, string message, DateTime date, List<Reply> replies)
+        public Comment(int id, string name, string emailAddress, string message, DateTime date, string fileName, List<Reply> replies)
         {
             Id = id;
             Name = name;
             EmailAddress = emailAddress;
             Message = message;
+            FileName = fileName;
             Date = date;
+
             _replies = replies;
             if (_replies == null)
                 _replies = new List<Reply>();

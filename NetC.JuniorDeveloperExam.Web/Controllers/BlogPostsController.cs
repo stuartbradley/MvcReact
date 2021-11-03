@@ -26,7 +26,7 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
             {
                 Id = blogPost.Id,
                 Date = blogPost.Date,
-                HtmlContext = blogPost.HtmlContext,
+                HtmlContext = blogPost.HtmlContent,
                 Image = blogPost.Image,
                 Title = blogPost.Title,
                 Comments = blogPost.Comments?.Select(x => new CommentModel()
@@ -35,6 +35,7 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                     Name = x.Name,
                     CreationDate = x.CreationDate,
                     EmailAddress = x.EmailAddress,
+                    FileName = x.FileName,
                     Message = x.Message,
                     Replies = x.Replies?.Select(y => new ReplyModel()
                     {
@@ -51,9 +52,18 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> AddComment(CommentPostModel model)
         {
-            await _mediatr.Send(new AddCommentToBlogPostCommand(model.BlogPostId, model.Name, model.CreationDate, model.EmailAddress, model.Message));
-            return RedirectToAction("Index", model.BlogPostId);
+            string fileName = "";
+            if (model.UploadedFile != null)
+            {
+                var fileLocation = Server.MapPath("../Assets/CommentFiles/" + model.UploadedFile.FileName);
+                model.UploadedFile.SaveAs(fileLocation);
+                fileName = model.UploadedFile.FileName;
+            }
+
+            await _mediatr.Send(new AddCommentToBlogPostCommand(model.BlogPostId, model.Name, model.CreationDate, model.EmailAddress, model.Message, fileName));
+            return RedirectToAction("Index", new { id = model.BlogPostId });
         }
+
         [Route("BlogPosts/ShowReply/{blogId}/{commentId}")]
         public ActionResult ShowReply(int blogId, int commentId)
         {

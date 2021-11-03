@@ -34,7 +34,7 @@ namespace NetC.Application.Queries
             {
                 Id = blogPost.Id,
                 Date = blogPost.Date,
-                HtmlContext = blogPost.HtmlContext,
+                HtmlContent = blogPost.HtmlContent,
                 Image = blogPost.Image,
                 Title = blogPost.Title,
                 Comments = blogPost.Comments?.Select(x => new CommentDto()
@@ -44,6 +44,7 @@ namespace NetC.Application.Queries
                     EmailAddress = x.EmailAddress,
                     Message = x.Message,
                     Name = x.Name,
+                    FileName = x.FileName,
                     Replies = x.Replies?.Select(y => new ReplyDto()
                     {
                         Name = y.Name,
@@ -64,7 +65,7 @@ namespace NetC.Application.Queries
         public DateTime Date { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
-        public string HtmlContext { get; set; }
+        public string HtmlContent { get; set; }
         public List<CommentDto> Comments { get; set; }
     }
 
@@ -75,6 +76,7 @@ namespace NetC.Application.Queries
         public DateTime CreationDate { get; set; }
         public string EmailAddress { get; set; }
         public string Message { get; set; }
+        public string FileName { get; set; }
         public List<ReplyDto> Replies { get; set; }
     }
 

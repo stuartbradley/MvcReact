@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace NetC.JuniorDeveloperExam.Web.Models.BlogPosts
 {
@@ -13,5 +14,6 @@ namespace NetC.JuniorDeveloperExam.Web.Models.BlogPosts
         public string EmailAddress { get; set; }
         public string Message { get; set; }
         public int BlogPostId { get; set; }
+        public HttpPostedFileBase UploadedFile { get; set; }
     }
 }

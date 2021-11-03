@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetC.JuniorDeveloperExam.Web", "NetC.JuniorDeveloperExam.Web\NetC.JuniorDeveloperExam.Web.csproj", "{CCCC64B9-27C7-4CC1-B5B1-19201377D3EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetC.Domain", "NetC.Domain\NetC.Domain.csproj", "{9C3B0D3B-FADF-438A-80AA-BA64441CB11B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetC.Domain", "NetC.Domain\NetC.Domain.csproj", "{9C3B0D3B-FADF-438A-80AA-BA64441CB11B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetC.Application", "NetC.Application\NetC.Application.csproj", "{6D893E07-56BC-4A86-AE77-4A3F76F28F47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetC.Application", "NetC.Application\NetC.Application.csproj", "{6D893E07-56BC-4A86-AE77-4A3F76F28F47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetC.Infrastructure", "NetC.Infrastructure\NetC.Infrastructure.csproj", "{1741F693-13ED-4001-8D50-E740C415BA1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetC.Infrastructure", "NetC.Infrastructure\NetC.Infrastructure.csproj", "{1741F693-13ED-4001-8D50-E740C415BA1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetC.Domain.Tests", "NetC.Domain.Tests\NetC.Domain.Tests.csproj", "{A4A923FD-DFA7-4906-A375-ABC4B40A99D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1741F693-13ED-4001-8D50-E740C415BA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1741F693-13ED-4001-8D50-E740C415BA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1741F693-13ED-4001-8D50-E740C415BA1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4A923FD-DFA7-4906-A375-ABC4B40A99D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A923FD-DFA7-4906-A375-ABC4B40A99D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A923FD-DFA7-4906-A375-ABC4B40A99D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A923FD-DFA7-4906-A375-ABC4B40A99D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

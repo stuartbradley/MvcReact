@@ -15,14 +15,16 @@ namespace NetC.Application.Commands
         public DateTime CreationDate { get; }
         public string EmailAddress { get; }
         public string Message { get; }
+        public string FileName { get; }
 
-        public AddCommentToBlogPostCommand(int blogPostId, string name, DateTime creationDate, string emailAddress, string message)
+        public AddCommentToBlogPostCommand(int blogPostId, string name, DateTime creationDate, string emailAddress, string message, string fileName)
         {
             BlogPostId = blogPostId;
             Name = name;
             CreationDate = creationDate;
             EmailAddress = emailAddress;
             Message = message;
+            FileName = fileName;
         }
     }
 
@@ -40,7 +42,7 @@ namespace NetC.Application.Commands
         public Task<int> Handle(AddCommentToBlogPostCommand request, CancellationToken cancellationToken)
         {
             var blogPost = _readBlogPostService.GetBlogPostByIdWithComments(request.BlogPostId);
-            var commentId = blogPost.AddComment(request.Name, request.EmailAddress, request.Message, request.CreationDate);
+            var commentId = blogPost.AddComment(request.Name, request.EmailAddress, request.Message, request.CreationDate,request.FileName);
             _writeBlogService.SaveBlogPost(blogPost);
             return Task.FromResult(commentId);
         }
